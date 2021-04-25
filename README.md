@@ -8,4 +8,5 @@ pip install tflearn
 pip install nltk  
 pip install numpy  
 
+when you run the main file you need to wait a little bit because of the neuro network until it finish the learning procedure  
 you can contact me on my facebook https://www.facebook.com/akrem.waeir/
