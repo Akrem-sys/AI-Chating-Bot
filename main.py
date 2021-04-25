@@ -4,10 +4,17 @@ from PyQt5.QtCore import  Qt,QCoreApplication
 from PyQt5.QtWidgets import QMainWindow,QApplication
 from src.BotUI import *
 from src.Bot import Bot
-#--------------------------------------------------------------------------------------------------------#
-#                                                   Contact me                                           #
-#                                     https://www.facebook.com/akrem.waeir/                              #
-#--------------------------------------------------------------------------------------------------------#
+###############################################################################################
+#                               GNU GENERAL PUBLIC LICENSE                                    #
+#                                 Version 3, 29 June 2007                                     #
+###############################################################################################
+#       Copyright (C) 2007 Free Software Foundation, Inc. https://fsf.org/ Everyone           #
+#       is permitted to copy and distribute verbatim copies of this license document,         #
+#       but changing it is not allowed.                                                       #
+###############################################################################################
+#                                    Contact me                                               #
+#                        https://www.facebook.com/akrem.waeir/                                #
+###############################################################################################
 class Winner(QMainWindow):
     def __init__(self,bot):
         QMainWindow.__init__(self)
