@@ -3,6 +3,7 @@
 -Java implementation for speed performance  
 -Audio Speach reader added  
 -Oxford dictionary added ( you can ask for words meaning)  
+-Require java in order to work  
 
 # AI-Chating-Bot  
 Ai Chating bot with graphical user interface can be implemented with discord api or messenger api and many others  
