@@ -1,6 +1,6 @@
 # AI-Chating-Bot v1.1
 -RAM Optimization  
--Java implementation for speed performance
+-Java implementation for speed performance  
 -Audio Speach reader added  
 -Oxford dictionary added ( you can ask for words meaning)  
 
