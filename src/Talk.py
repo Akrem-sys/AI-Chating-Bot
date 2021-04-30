@@ -1,6 +1,6 @@
 from gtts import gTTS
-from os import remove,listdir
-from playsound import playsound
+from os import remove,listdir,system
+
 class Talk:
     def __init__(self,text,count,language='en',slow=False):
         self.text=str(text)
@@ -10,7 +10,7 @@ class Talk:
     def read(self):
         out = gTTS(text=self.text,lang=self.language,slow=self.slow)
         out.save(f"audios/speak{self.coun}.mp3")
-        playsound(f"audios/speak{self.coun}.mp3")
+        system(f"ffmpeg -i audios\\speak{self.coun}.mp3 audios\\speak{self.coun}.wav")
     def delete():
         path="audios/"
         dir=listdir(path)
