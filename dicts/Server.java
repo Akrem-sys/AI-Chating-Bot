@@ -4,6 +4,11 @@ import java.net.*;
 import java.io.File;  // Import the File class
 import java.io.FileNotFoundException;  // Import this class to handle errors
 import java.util.Scanner;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 public class Server {
    long time;
@@ -17,7 +22,13 @@ public class Server {
         double elapsedTime = (System.nanoTime() - this.time)/Math.pow(10,12);
     	System.out.printf("dexp: %f\n", elapsedTime);
 }
-
+  public static void PlayAudio(String path) throws UnsupportedAudioFileException,IOException, LineUnavailableException{
+        System.out.println(path);
+        AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(path).getAbsoluteFile());
+        Clip clip = AudioSystem.getClip();
+        clip.open(audioInputStream);
+        clip.start();
+  } 
   public static String FileParsing(String path,String word){
     try{
         File f = new File(path);
@@ -51,12 +62,27 @@ public class Server {
 	      DataInputStream in = new DataInputStream(soc.getInputStream());
 	      String msg=(String)in.readUTF();
 	      System.out.println("Client: "+msg);
+        String audio=msg;
 	      msg=FileParsing("dicts.json",msg);
-	      if (msg.indexOf("Couldn't find")==-1){
+	      if (msg.indexOf("Couldn't find")==-1 && audio.indexOf("PlayAudio")==-1){
 		      dout.writeUTF(DefinitionFinder(msg));
 		      dout.flush();
 		      dout.close();
 	      }
+
+	      else if (msg.indexOf("Couldn't find")!=-1 && audio.indexOf("PlayAudio")==-1){
+		      dout.writeUTF(msg);
+		      dout.flush();
+		      dout.close();
+	      }
+        else if (audio.indexOf("PlayAudio")!=-1){
+          int len=audio.length();
+          audio=audio.substring(10,len);
+          PlayAudio(audio);
+          dout.writeUTF("Playing...");
+          dout.flush();
+          dout.close();
+        }
 	    }
 	    catch(Exception e){
 	      e.printStackTrace(); 
