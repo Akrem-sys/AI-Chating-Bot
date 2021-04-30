@@ -1,4 +1,4 @@
-
+import java.io.IOException;
 import java.io.*;  
 import java.net.*; 
 import java.io.File;  // Import the File class
@@ -21,6 +21,16 @@ public class Server {
    public void end(){
         double elapsedTime = (System.nanoTime() - this.time)/Math.pow(10,12);
     	System.out.printf("dexp: %f\n", elapsedTime);
+}
+    public static void FileDelete() {
+        String[] pathnames;
+        String path="audios";
+        File f = new File(path);
+        pathnames = f.list();
+        for (String pathname : pathnames) {
+            File to = new File(path+"\\"+pathname);
+            to.delete();
+    }
 }
   public static void PlayAudio(String path) throws UnsupportedAudioFileException,IOException, LineUnavailableException{
         System.out.println(path);
@@ -52,7 +62,8 @@ public class Server {
       return data.substring(data.indexOf("\"definition\"")+16,data.indexOf("\"__v\"")-3);
     }
 
-  public static void main(String[] args) throws IOException{ 
+  public static void main(String[] args) throws IOException{
+      FileDelete();
       ServerSocket serverSocket = new ServerSocket(12345);
       while(true){
       	try{
